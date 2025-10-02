@@ -149,5 +149,151 @@ npm run dev
 ```
 Open the displayed local URL (e.g., http://localhost:5173) in your browser to view the website.
 
+<hr style="border:1px solid #C99A57;"/>
+
+<h2 style="color:#1F2933;">🖥️ Backend Setup</h2>
+<p style="color:#555;">
+The backend requires a database connection, cloud storage for images, and several environment variables to run correctly.
+</p>
+
+6. Navigate to the Backend Directory
+Open a new terminal (keep your frontend terminal running) and navigate into the backend directory:
+
+```
+cd backend
+```
+
+7. Install Dependencies
+```
+npm install
+```
+<h2 style="color:#1F2933;">8. Set Up the Database (MongoDB Atlas)</h2>
+<p style="color:#555;">This project uses MongoDB Atlas for the database. Follow these steps to create a free database:</p>
+
+<ol style="color:#555;">
+  <li>
+    <strong>Create an Account:</strong> Go to <a href="https://www.mongodb.com/cloud/atlas" target="_blank">MongoDB Atlas</a> and sign up for a free account.
+  </li>
+  <li>
+    <strong>Create a New Project:</strong> After logging in, create a new project (e.g., <code>Project</code>) and proceed.
+  </li>
+  <li>
+    <strong>Build a Database:</strong>
+    <ul>
+      <li>Click the <strong>Build a Database</strong> button.</li>
+      <li>Select the <strong>M0 FREE shared plan</strong>.</li>
+      <li>Leave the cloud provider (e.g., AWS) and region as default.</li>
+      <li>Click <strong>Create</strong>. Cluster creation will take a few minutes.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Create a Database User:</strong>
+    <ul>
+      <li>Go to <strong>SECURITY → Database Access → Add New Database User</strong>.</li>
+      <li>Enter a username (e.g., <code>user</code>) and password. Save it securely.</li>
+      <li>Click <strong>Add User</strong>.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Configure Network Access:</strong>
+    <ul>
+      <li>Go to <strong>SECURITY → Network Access → Add IP Address</strong>.</li>
+      <li>Select <strong>ALLOW ACCESS FROM ANYWHERE</strong> (0.0.0.0/0).</li>
+      <li>Click <strong>Confirm</strong> and wait until status changes to <strong>Active</strong>.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Get Your Connection String:</strong>
+    <ul>
+      <li>Go back to your cluster view and click <strong>Connect → Drivers</strong>.</li>
+      <li>Copy the provided connection string, it will look like: <code>mongodb+srv://&lt;username&gt;:&lt;password&gt;@...</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 style="color:#1F2933;">9. Set Up Image Storage (Cloudinary)</h2>
+<p style="color:#555;">This project uses Cloudinary to store and manage image uploads:</p>
+
+<ol style="color:#555;">
+  <li>
+    <strong>Create an Account:</strong> Go to <a href="https://cloudinary.com/" target="_blank">Cloudinary</a> and sign up for a free account.
+  </li>
+  <li>
+    <strong>Find Your Credentials:</strong> After logging in, copy your <strong>Cloud Name</strong>, <strong>API Key</strong>, and <strong>API Secret</strong> from the dashboard.
+  </li>
+</ol>
+
+<h2 style="color:#1F2933;">10. Create the Backend Environment File (.env)</h2>
+<p style="color:#555;">In the <code>backend</code> directory, create a new file named <code>.env</code> and copy the following content. Replace all placeholder values (<code>YOUR_...</code>) with the credentials from MongoDB Atlas and Cloudinary:</p>
+
+```
+PORT=8000
+
+# MongoDB Atlas connection string
+MONGO_URI=YOUR_MONGODB_ATLAS_CONNECTION_STRING
+
+# JWT configuration
+ACCESS_TOKEN_SECRET=jmmhomesloginsupersecretkey
+ACCESS_TOKEN_EXPIRY=1d
+
+# Cloudinary credentials
+CLOUDINARY_CLOUD_NAME=YOUR_CLOUDINARY_CLOUD_NAME
+CLOUDINARY_API_KEY=YOUR_CLOUDINARY_API_KEY
+CLOUDINARY_API_SECRET=YOUR_CLOUDINARY_API_SECRET
+
+# Frontend URL for CORS
+CORS_ORIGIN=http://localhost:5173
+```
+
+11. Start the Backend Server
+```
+npm run dev
+```
+
+If everything is configured correctly, the terminal should show:
+```
+MongoDB Connected!
+Server is running at port : 8000
+```
+
+With both frontend and backend servers running, the application is now fully functional on your local machine.
+
+<hr style="border:1px solid #C99A57; margin:30px 0;"/>
+
+<h2 style="color:#1F2933;">🌟 Exploring the Application</h2>
+<p style="color:#555; font-size:15px;">
+Once both frontend and backend servers are running, the application is fully functional.
+</p>
+
+<ul style="color:#555; font-size:15px;">
+  <li>
+    <strong>Main Website:</strong> Navigate to 
+    <a href="http://localhost:5173" target="_blank" style="color:#C99A57; text-decoration:none;">http://localhost:5173</a> 
+    in your browser to view the client-facing website. Browse all pages, view project details, and test the contact form.
+  </li>
+  <li>
+    <strong>Admin Panel:</strong> Access the admin section by clicking the <strong>Admin</strong> link in the footer or navigate directly to 
+    <code>/admin/login</code>. Log in to create new projects with image uploads and manage all existing content.
+  </li>
+</ul>
+
+<h2 style="color:#1F2933;">🙏 Support & Acknowledgements</h2>
+<p style="color:#555; font-size:15px;">
+This project represents a complete end-to-end implementation of a modern MERN stack application, incorporating:
+</p>
+
+<ul style="color:#555; font-size:15px;">
+  <li>Professional project structure</li>
+  <li>Advanced frontend animations</li>
+  <li>Full backend functionality</li>
+</ul>
+
+<p style="color:#555; font-size:15px;">
+If you found this project helpful, learned something from the codebase, or appreciate the effort, please consider giving it a <span style="color:#C99A57;">⭐ Star</span> on GitHub. Your support is greatly appreciated and helps showcase this work to a wider community.
+</p>
+
+<p style="color:#555; font-size:15px; font-style:italic;">
+Thank you for visiting my repository!
+</p>
 
 
