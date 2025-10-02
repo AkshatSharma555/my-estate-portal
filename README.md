@@ -98,6 +98,8 @@ The primary goal of this project is to provide a stunning online presence for we
   <li>dotenv (Environment variables management)</li>
 </ul>
 
+<hr style="border:1px solid #C99A57;"/>
+
 <h2 style="color:#1F2933;">🚀 Getting Started</h2>
 
 Follow these instructions to set up and run the project on your local machine for development and testing purposes.
