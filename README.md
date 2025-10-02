@@ -101,7 +101,7 @@ The primary goal of this project is to provide a stunning online presence for we
 <hr style="border:1px solid #C99A57;"/>
 
 <h2 style="color:#1F2933;">🚀 Getting Started</h2>
-<p style="color:#555;">
+
 Follow these instructions to set up and run the project on your local machine for development and testing purposes.
 </p>
 
