@@ -97,3 +97,56 @@ The primary goal of this project is to provide a stunning online presence for we
 <ul style="color:#555;">
   <li>dotenv (Environment variables management)</li>
 </ul>
+
+<hr style="border:1px solid #C99A57;"/>
+
+<h2 style="color:#1F2933;">🚀 Getting Started</h2>
+<p style="color:#555;">
+Follow these instructions to set up and run the project on your local machine for development and testing purposes.
+</p>
+
+### Prerequisites
+Before you begin, ensure you have the following software installed on your system:
+
+- **Node.js**: Version 18.x or higher. [Download here](https://nodejs.org/)
+- **Git**: Required for cloning the repository. [Download here](https://git-scm.com/)
+
+---
+
+<h2 style="color:#1F2933;">🛠️ Installation & Setup</h2>
+
+### 1. Clone the Repository
+First, clone the project repository to your local machine. Open your terminal and run:
+
+```
+https://github.com/AkshatSharma555/my-estate-portal.git
+```
+
+Next, navigate into the project directory:
+```
+cd my-estate-portal
+```
+
+<h2 style="color:#1F2933;">🖥️ Frontend Setup</h2>
+2. Navigate to the Frontend Directory
+
+cd frontend
+
+3. Install Dependencies
+
+npm install
+
+4. Create the Environment Variable File (.env)
+The frontend needs to know the backend server URL. Create a file named .env in the frontend directory with:
+
+```
+VITE_BACKEND_URL=http://localhost:8000
+```
+5. Start the Frontend Application
+```
+npm run dev
+```
+Open the displayed local URL (e.g., http://localhost:5173) in your browser to view the website.
+
+
+
