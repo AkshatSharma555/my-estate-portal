@@ -13,6 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AnimatedPage from './components/AnimatedPage';
 import BackToTopButton from './components/BackToTopButton';
+import AdminRegisterPage from './pages/AdminRegisterPage';
 
 function App() {
   const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
           </Route>
           
           <Route path="/admin/login" element={<AnimatedPage><AdminLoginPage /></AnimatedPage>} />
+          <Route path="/admin/register" element={<AnimatedPage><AdminRegisterPage /></AnimatedPage>} />
           <Route element={<ProtectedRoute />}>
             <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           </Route>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { loginAdmin } from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function AdminLoginPage() {
   const [username, setUsername] = useState('');
@@ -39,6 +39,11 @@ function AdminLoginPage() {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button type="submit" className="w-full py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-md">Login</button>
         </form>
+
+        <p className="text-center text-sm text-gray-400 pt-4">
+            Need to create the new admin? <Link to="/admin/register" className="font-medium text-orange-400 hover:underline">Register here</Link>
+        </p>
+
       </div>
     </div>
   );

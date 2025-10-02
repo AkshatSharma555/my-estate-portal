@@ -46,3 +46,8 @@ export const loginAdmin = async (credentials) => {
     const response = await apiClient.post('/admins/login', credentials);
     return response.data;
 };
+
+export const changePassword = async (passwordData) => {
+    const response = await apiClient.post('/admins/change-password', passwordData);
+    return response.data;
+};

@@ -1,21 +1,18 @@
 // src/pages/AdminDashboardPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-// useNavigate yahan se hata diya hai
 import { getAllProjects, deleteProject, getAllInquiries, deleteInquiry } from '../services/api';
 import ProjectManager from '../components/admin/ProjectManager';
 import InquiryViewer from '../components/admin/InquiryViewer';
+import SettingsManager from '../components/admin/SettingsManager'; // Naya component import karo
 
 function AdminDashboardPage() {
   const { logout } = useAuth();
-  // navigate yahan se hata diya hai
   const [activeTab, setActiveTab] = useState('projects');
-  // ... baaki state variables
   const [projects, setProjects] = useState([]);
   const [inquiries, setInquiries] = useState([]);
 
   useEffect(() => {
-    // ... useEffect ka code same rahega
     const fetchData = async () => {
       try {
         const projectsData = await getAllProjects();
@@ -30,12 +27,10 @@ function AdminDashboardPage() {
     fetchData();
   }, [logout]);
 
-
   const handleLogout = () => {
-    logout(); // Bas logout call karo, redirection automatically ho jayega
+    logout();
   };
 
-  // ... baaki saare functions (handleProjectDelete, etc.) same rahenge
   const handleProjectDelete = async (id) => {
     if (window.confirm("Are you sure?")) {
       try {
@@ -58,9 +53,7 @@ function AdminDashboardPage() {
     setProjects(prev => [newProject, ...prev]);
   };
 
-
   return (
-    // JSX ka poora structure same rahega
     <div className="min-h-screen bg-slate-900 text-white p-4 md:p-8">
       <div className="container mx-auto">
         <div className="flex justify-between items-center mb-8">
@@ -77,6 +70,10 @@ function AdminDashboardPage() {
           <button onClick={() => setActiveTab('inquiries')} className={`py-2 px-4 font-semibold ${activeTab === 'inquiries' ? 'border-b-2 border-orange-500 text-orange-500' : 'text-slate-400'}`}>
             View Inquiries ({inquiries.length})
           </button>
+          {/* Naya Tab Button */}
+          <button onClick={() => setActiveTab('settings')} className={`py-2 px-4 font-semibold ${activeTab === 'settings' ? 'border-b-2 border-orange-500 text-orange-500' : 'text-slate-400'}`}>
+            Settings
+          </button>
         </div>
 
         {activeTab === 'projects' && (
@@ -86,12 +83,15 @@ function AdminDashboardPage() {
             onProjectAdded={handleProjectAdded} 
           />
         )}
-
         {activeTab === 'inquiries' && (
           <InquiryViewer 
             inquiries={inquiries} 
             onDelete={handleInquiryDelete} 
           />
+        )}
+        {/* Naya Component Render karo */}
+        {activeTab === 'settings' && (
+          <SettingsManager />
         )}
 
       </div>
