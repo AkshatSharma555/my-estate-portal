@@ -1,0 +1,35 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    @apply scroll-smooth;
+}
+
+body {
+    @apply bg-white text-slate-800 font-sans antialiased;
+    background-color: #ffffff;
+    background-image: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+    transition: background-color 0.3s ease;
+}
+
+.dark body {
+    @apply bg-black text-slate-200;
+    background-color: #111827;
+    background-image: linear-gradient(180deg, #111827 0%, #000000 100%);
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    @apply w-2;
+}
+::-webkit-scrollbar-track {
+    @apply bg-gray-200 dark:bg-slate-800;
+}
+::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-orange-400;
+}
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-orange-500;
+}

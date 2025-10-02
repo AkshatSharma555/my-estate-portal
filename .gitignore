@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Environment Variables (SECRET FILES)
+.env
+frontend/.env
+backend/.env
+
+# Temporary files (for backend uploads)
+backend/public/temp/
+
+# Build output
+dist/
+frontend/dist/
+backend/dist/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
