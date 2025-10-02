@@ -128,14 +128,15 @@ cd my-estate-portal
 ```
 
 <h2 style="color:#1F2933;">🖥️ Frontend Setup</h2>
+
 2. Navigate to the Frontend Directory
-
+```
 cd frontend
-
+```
 3. Install Dependencies
-
+```
 npm install
-
+```
 4. Create the Environment Variable File (.env)
 The frontend needs to know the backend server URL. Create a file named .env in the frontend directory with:
 
