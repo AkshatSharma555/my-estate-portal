@@ -1,11 +1,11 @@
 <h1 align="center" style="color:#1F2933;">Architectural and Home Management System</h1>
 
 <p align="center" style="font-size:16px; color:#555;">
-Welcome to the official repository for the <strong>JMM Homes</strong> website. This is a complete full-stack MERN application built from scratch for a modern architectural and real estate development company.
+Welcome to the official repository for the <strong>Estate Portal</strong> website. This is a complete full-stack MERN application built from scratch for a modern architectural and real estate development company.
 </p>
 
 <p style="color:#555;">
-The primary goal of this project is to provide a stunning online presence for JMM Homes, allowing them to showcase their portfolio of projects, generate leads through inquiries, and manage their content seamlessly through a secure admin panel.
+The primary goal of this project is to provide a stunning online presence for website, allowing them to showcase their portfolio of projects, generate leads through inquiries, and manage their content seamlessly through a secure admin panel.
 </p>
 
 <hr style="border:1px solid #C99A57;"/>
