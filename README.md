@@ -233,8 +233,10 @@ PORT=8000
 MONGO_URI=YOUR_MONGODB_ATLAS_CONNECTION_STRING
 
 # JWT configuration
-ACCESS_TOKEN_SECRET=jmmhomesloginsupersecretkey
+ACCESS_TOKEN_SECRET=jmmhomesloginsupersecretkey (you can create yours)
 ACCESS_TOKEN_EXPIRY=1d
+
+ADMIN_REGISTRATION_SECRET=AKSHAT-IS-THE-BEST-SECRET-2025  (you can create yours)
 
 # Cloudinary credentials
 CLOUDINARY_CLOUD_NAME=YOUR_CLOUDINARY_CLOUD_NAME
