@@ -15,22 +15,44 @@ const faqs = [
 function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState({ message: '', type: '' });
+  const [formErrors, setFormErrors] = useState({});
 
-  // === YAHAN FIX KIYA HAI ===
   const handleChange = (e) => {
-    const { name, value } = e.target; // Yeh line add ki hai
+    const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'name') {
+      const nameRegex = /^[A-Za-z\s]*$/;
+      if (!nameRegex.test(value)) {
+        setFormErrors(prev => ({ ...prev, name: 'Name can only contain letters and spaces.' }));
+      } else {
+        setFormErrors(prev => ({ ...prev, name: '' }));
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus({ message: '', type: '' });
+
+    if (formErrors.name || !formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      const newErrors = {};
+      if (!formData.name.trim()) newErrors.name = 'Name is required.';
+      if (!formData.email.trim()) newErrors.email = 'Email is required.';
+      if (!formData.message.trim()) newErrors.message = 'Message is required.';
+      setFormErrors(prev => ({...prev, ...newErrors}));
+      return;
+    }
+
     setStatus({ message: 'Sending...', type: 'loading' });
     try {
       await submitInquiry(formData);
       setStatus({ message: 'Thank you! We will get back to you soon.', type: 'success' });
       setFormData({ name: '', email: '', phone: '', message: '' });
+      setFormErrors({});
     } catch (error) {
-      setStatus({ message: 'Something went wrong. Please try again.', type: 'error' });
+      const backendMessage = error.response?.data?.message || 'Something went wrong. Please try again.';
+      setStatus({ message: backendMessage, type: 'error' });
     }
   };
 
@@ -48,14 +70,16 @@ function ContactPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
         <div className="lg:col-span-3 bg-white/50 dark:bg-slate-800/50 p-8 rounded-lg shadow-lg backdrop-blur-sm">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             <div className="mb-4">
               <label htmlFor="name" className="block text-slate-700 dark:text-slate-300 font-semibold mb-2">Name</label>
               <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-2 bg-gray-100 dark:bg-slate-700 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"/>
+              {formErrors.name && <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>}
             </div>
             <div className="mb-4">
               <label htmlFor="email" className="block text-slate-700 dark:text-slate-300 font-semibold mb-2">Email</label>
               <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-2 bg-gray-100 dark:bg-slate-700 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"/>
+              {formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
             </div>
             <div className="mb-4">
               <label htmlFor="phone" className="block text-slate-700 dark:text-slate-300 font-semibold mb-2">Phone (Optional)</label>
@@ -64,6 +88,7 @@ function ContactPage() {
             <div className="mb-6">
               <label htmlFor="message" className="block text-slate-700 dark:text-slate-300 font-semibold mb-2">Message</label>
               <textarea name="message" id="message" value={formData.message} onChange={handleChange} rows="5" required className="w-full px-4 py-2 bg-gray-100 dark:bg-slate-700 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+              {formErrors.message && <p className="text-red-500 text-sm mt-1">{formErrors.message}</p>}
             </div>
             <motion.button 
               type="submit" 
@@ -90,7 +115,7 @@ function ContactPage() {
             <div>
                 <h3 className="text-2xl font-bold mb-4">Our Location</h3>
                 <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30177.77197177579!2d72.99084323955078!3d19.031088600000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c3e232a393fb%3A0x89224645293206f!2sNerul%2C%20Navi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1727878891559!5m2!1sen!2sin" width="100%" height="100%" style={{ border:0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.373432168953!2d73.02327467592477!3d19.047306352011113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c3b363351543%3A0x58275820921a22d!2sJMM%20HOMES!5e0!3m2!1sen!2sin!4v1728632128833!5m2!1sen!2sin" width="100%" height="100%" style={{ border:0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
