@@ -1,115 +1,192 @@
 // src/pages/AboutPage.jsx
 import React from 'react';
-import SplitText from '../components/SplitText';
-import ProfileCard from '../components/ProfileCard';
-import vedangImage from '../assets/vedang.png';
-import sahilImage from '../assets/sahil.png';
-import vishalImage from '../assets/vishal.png';
+import { motion } from 'framer-motion';
+import CountUp from 'react-countup';
+import { FiTarget, FiEye, FiHeart, FiAward, FiHome, FiUsers } from 'react-icons/fi';
 
-// ... (founders aur processSteps ka data same rahega)
-const founders = [
-  { name: 'Vedang Madhavi', title: 'Co-Founder, Lead Architect', imageUrl: vedangImage, handle: 'vedang_archi', instaUrl: 'https://www.instagram.com/vedang.m_23/' },
-  { name: 'Sahil Bhatt', title: 'Co-Founder, Project Management', imageUrl: sahilImage, handle: 'sahil_builds', instaUrl: 'https://www.instagram.com/_.sahilbhatt._/' },
-  { name: 'Vishal Naidu', title: 'Co-Founder, Client Relations', imageUrl: vishalImage, handle: 'vishal_connects', instaUrl: 'https://www.instagram.com/vishall_naidu/' }
+import ceoImage from '../assets/Mhatre.jpg'; // Make sure Mhatre.jpg is in src/assets/
+
+// Helper component for animated sections
+const AnimatedSection = ({ children, delay = 0.2 }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.3 }}
+    transition={{ duration: 0.6, delay }}
+  >
+    {children}
+  </motion.div>
+);
+
+// Data for new and existing sections
+const missionVision = [
+    { icon: <FiTarget />, title: 'Our Mission', description: 'To craft superior quality homes that blend innovative design with functionality, ensuring every family finds their perfect sanctuary with us.' },
+    { icon: <FiEye />, title: 'Our Vision', description: 'To be the most trusted and sought-after real estate developer, renowned for our commitment to excellence, transparency, and building lifelong relationships with our clients.' },
 ];
-const processSteps = [
-    { num: '01', title: 'Consultation & Vision', description: 'We begin with a deep dive into your vision, understanding your lifestyle and aspirations to lay a strong foundation.' },
-    { num: '02', title: 'Architectural & Interior Design', description: 'Our team collaborates to create detailed blueprints and 3D models, focusing on optimizing space, light, and materials.' },
-    { num: '03', title: 'Precision Construction', description: 'Employing the highest standards of craftsmanship, we manage every stage with quality and transparency.' },
-    { num: '04', title: 'Finishing & Handover', description: 'After a thorough quality inspection, we proudly hand over the keys to your new space, ensuring your complete satisfaction.' }
+
+const timelineEvents = [
+    { year: '2018', title: 'Foundation Laid', description: 'JMM Homes was founded with a singular vision: to redefine quality living.' },
+    { year: '2020', title: 'First Landmark Project', description: 'Successfully completed and delivered our flagship residential complex, setting a new benchmark.' },
+    { year: '2022', title: 'Geographical Expansion', description: 'Expanded our operations to new cities, bringing our mark of quality to a wider audience.' },
+    { year: '2024', title: '50+ Happy Families', description: 'Celebrated the milestone of creating dream homes for over 50 families.' },
 ];
+
+const stats = [
+    { icon: <FiHome />, end: 30, suffix: '+', label: 'Projects Completed' },
+    { icon: <FiUsers />, end: 50, suffix: '+', label: 'Happy Families' },
+    { icon: <FiAward />, end: 99, suffix: '%', label: 'Client Satisfaction' },
+];
+
+const testimonials = [
+    { name: 'Rohan & Priya Sharma', quote: "The attention to detail in our home is simply outstanding. JMM Homes delivered more than just a house; they gave us a home. The entire process was transparent and seamless." },
+    { name: 'Anjali Mehta', quote: "From the initial consultation to the final handover, the team was professional and incredibly supportive. Their commitment to quality is visible in every corner of our apartment." },
+    { name: 'Vikram Singh', quote: "I was impressed by their innovative designs and use of sustainable materials. They are truly building homes for the future. Highly recommended!" },
+];
+
 const coreValues = [
-    { title: 'Quality', description: 'We use only the finest materials and craftsmanship to ensure every project stands the test of time.' },
-    { title: 'Integrity', description: 'Our business is built on transparency and trust. We maintain open communication with our clients.' },
-    { title: 'Innovation', description: 'We embrace modern techniques and sustainable practices to build homes that are efficient and future-ready.' },
+    { icon: <FiHeart />, title: 'Quality', description: 'We use only the finest materials and craftsmanship to ensure every project stands the test of time.' },
+    { icon: <FiAward />, title: 'Integrity', description: 'Our business is built on transparency and trust. We maintain open communication with our clients.' },
+    { icon: <FiTarget />, title: 'Innovation', description: 'We embrace modern techniques and sustainable practices to build homes that are efficient and future-ready.' },
 ];
 
-// Naye section ke liye data
-const whyChooseUs = [
-    { title: 'Unmatched Quality', description: 'Our obsession with quality is evident in every corner of our projects.', icon: 'M5 13l4 4L19 7' },
-    { title: 'Transparent Process', description: 'We keep you informed at every step, ensuring a seamless and stress-free experience.', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
-    { title: 'Client-Centric Approach', description: 'Your satisfaction is our ultimate goal. We listen, we understand, and we deliver on our promises.', icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z' }
-];
 
 function AboutPage() {
   return (
-    <div className="container mx-auto px-6 py-20">
-      
-      <div className="text-center mb-24">
-        <SplitText 
-          tag="h1"
-          text="Crafting Homes, Building Trust."
-          className="text-5xl md:text-6xl font-bold mb-4 text-slate-800 dark:text-white"
-          splitType="words"
-        />
-        <p className="text-lg max-w-3xl mx-auto text-slate-600 dark:text-slate-400">
-          JMM Homes was founded on the principle of creating exceptional living spaces that blend quality, comfort, and modern design.
-        </p>
-      </div>
-
-      <div className="mb-24">
-        <h2 className="text-4xl font-bold text-center mb-16 text-slate-800 dark:text-white">Meet the Founders</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 justify-items-center">
-          {founders.map((founder) => (
-            <ProfileCard 
-              key={founder.name}
-              name={founder.name}
-              title={founder.title}
-              handle={founder.handle}
-              avatarUrl={founder.imageUrl}
-              enableTilt={true}
-              onContactClick={() => window.open(founder.instaUrl, '_blank')}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="mb-24 py-20 bg-white/50 dark:bg-slate-800/50 rounded-xl backdrop-blur-sm">
-        <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">Our Core Values</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
-            {coreValues.map((value) => (
-                <div key={value.title} className="p-6 text-center">
-                    <h3 className="text-2xl font-bold text-orange-500 mb-2">{value.title}</h3>
-                    <p className="text-slate-600 dark:text-slate-400">{value.description}</p>
-                </div>
-            ))}
-        </div>
-      </div>
-      
-      {/* --- Our Commitment Section (Updated) --- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-20 mb-24">
-        <div>
-            <h2 className="text-4xl font-bold mb-4 text-slate-800 dark:text-white">Our Commitment to Excellence</h2>
-            <p className="text-slate-600 dark:text-slate-400 mb-4">
-                At JMM Homes, excellence isn't just a goal; it's our standard. We are committed to delivering unparalleled quality in every project we undertake. From the initial design to the final handover, our team is dedicated to exceeding expectations.
+    // Added a subtle dot pattern to the background for a premium feel
+    <div className="bg-slate-50 dark:bg-slate-900 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px]">
+      <div className="container mx-auto px-6 py-20">
+        
+        {/* --- HERO SECTION --- */}
+        <AnimatedSection>
+          <div className="text-center pt-16 pb-24">
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 text-slate-800 dark:text-white">
+              Crafting Homes, <span className="text-orange-500">Building Trust.</span>
+            </h1>
+            <p className="text-lg max-w-3xl mx-auto text-slate-600 dark:text-slate-400">
+              JMM Homes was founded on the principle of creating exceptional living spaces that blend quality, comfort, and modern design.
             </p>
-            <p className="text-slate-600 dark:text-slate-400">
-                We believe that a home is more than just a structure; it's a foundation for memories and a sanctuary for families. This belief drives us to pour our hearts into every detail, ensuring that each JMM Home is a masterpiece of design, comfort, and durability.
-            </p>
-        </div>
-        <div>
-            <img src="https://images.pexels.com/photos/2724748/pexels-photo-2724748.jpeg" alt="Commitment to excellence" className="rounded-lg shadow-2xl w-full" />
-        </div>
-      </div>
-      
-      {/* --- NEW SECTION: Why Choose Us --- */}
-      <div className="py-20">
-          <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">Why Choose JMM Homes?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {whyChooseUs.map(item => (
-                  <div key={item.title} className="bg-white/50 dark:bg-slate-800/50 p-8 rounded-lg shadow-lg backdrop-blur-sm text-center">
-                      <div className="flex justify-center mb-4">
-                          <div className="bg-orange-500/20 p-3 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
-                            </svg>
-                          </div>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-                      <p className="text-slate-600 dark:text-slate-400">{item.description}</p>
-                  </div>
-              ))}
           </div>
+        </AnimatedSection>
+
+        {/* --- CEO SECTION --- */}
+        <AnimatedSection>
+          <div className="py-24">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 items-center max-w-7xl mx-auto">
+              <div className="md:col-span-2 flex justify-center">
+                  <img src={ceoImage} alt="J. M. Mhatre, CEO of JMM Homes" className="rounded-lg shadow-2xl w-full max-w-sm object-cover" />
+              </div>
+              <div className="md:col-span-3">
+                  <h2 className="text-sm font-bold uppercase text-orange-500 tracking-widest mb-2">A Message from the Visionary</h2>
+                  <h3 className="text-4xl font-bold mb-2 text-slate-800 dark:text-white">J. M. Mhatre</h3>
+                  <p className="font-semibold text-slate-600 dark:text-slate-400 mb-6">CEO & Founder, JMM Homes</p>
+                  
+                  {/* === UPDATED INFO STARTS HERE === */}
+                  <p className="text-slate-600 dark:text-slate-400 mb-4 text-lg">
+                    J. M. Mhatre, a passionate entrepreneur and the driving force behind JM Mhatre Infra Logistics. With a strong belief in building dreams from the ground up, he began his journey from scratch — turning challenges into opportunities through hard work, dedication, and an eye for quality.
+                  </p>
+                  <p className="text-slate-600 dark:text-slate-400 text-lg">
+                    Under his leadership, JMM Homes has grown into a trusted name in construction and real estate, known for delivering excellence, reliability, and innovation. Every project reflects his commitment to creating spaces that combine modern design, durability, and comfort — where every home tells a story of trust and craftsmanship.
+                  </p>
+                  {/* === UPDATED INFO ENDS HERE === */}
+
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+        
+        {/* --- NEW: MISSION & VISION SECTION --- */}
+        <AnimatedSection>
+            <div className="py-24">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-5xl mx-auto">
+                    {missionVision.map(item => (
+                        <div key={item.title} className="flex items-start gap-6">
+                            <div className="text-4xl text-orange-500 mt-1">
+                                {item.icon}
+                            </div>
+                            <div>
+                                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">{item.title}</h3>
+                                <p className="text-slate-600 dark:text-slate-400">{item.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </AnimatedSection>
+
+        {/* --- NEW: OUR JOURNEY (TIMELINE) SECTION --- */}
+        <AnimatedSection>
+          <div className="py-24">
+            <h2 className="text-4xl font-bold text-center mb-16 text-slate-800 dark:text-white">Our Journey</h2>
+            <div className="relative max-w-2xl mx-auto">
+              <div className="absolute left-1/2 w-0.5 h-full bg-orange-200 dark:bg-slate-700 transform -translate-x-1/2"></div>
+              {timelineEvents.map((event, index) => (
+                <div key={index} className={`mb-8 flex justify-between items-center w-full ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
+                  <div className="w-5/12"></div>
+                  <div className="z-10 bg-orange-500 text-white rounded-full w-24 h-24 flex items-center justify-center font-bold text-xl shadow-lg">
+                    {event.year}
+                  </div>
+                  <div className="w-5/12 bg-white/80 dark:bg-slate-800/80 p-6 rounded-lg shadow-xl backdrop-blur-sm">
+                    <h3 className="font-bold text-xl mb-1 text-orange-500">{event.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">{event.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* --- NEW: THE NUMBERS SPEAK SECTION --- */}
+        <AnimatedSection>
+          <div className="py-24">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              {stats.map(stat => (
+                <div key={stat.label} className="bg-white/50 dark:bg-slate-800/50 p-8 rounded-lg shadow-lg backdrop-blur-sm">
+                  <div className="text-5xl text-orange-500 mb-4 mx-auto w-fit">{stat.icon}</div>
+                  <div className="text-5xl font-bold text-slate-800 dark:text-white">
+                    <CountUp end={stat.end} duration={3} enableScrollSpy />{stat.suffix}
+                  </div>
+                  <p className="text-slate-500 dark:text-slate-400 mt-2">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+        
+        {/* --- RE-STYLED: CORE VALUES SECTION --- */}
+        <AnimatedSection>
+            <div className="py-24">
+                <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">Our Core Values</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    {coreValues.map(value => (
+                        <div key={value.title} className="text-center p-8 bg-white/50 dark:bg-slate-800/50 rounded-lg shadow-lg backdrop-blur-sm">
+                            <div className="flex justify-center mb-4">
+                                <div className="bg-orange-500/20 p-4 rounded-full text-4xl text-orange-500">
+                                  {value.icon}
+                                </div>
+                            </div>
+                            <h3 className="text-2xl font-bold mb-2 text-slate-800 dark:text-white">{value.title}</h3>
+                            <p className="text-slate-600 dark:text-slate-400">{value.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </AnimatedSection>
+
+        {/* --- NEW: TESTIMONIALS SECTION --- */}
+        <AnimatedSection>
+            <div className="py-24">
+                <h2 className="text-4xl font-bold text-center mb-12 text-slate-800 dark:text-white">What Our Clients Say</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    {testimonials.map(testimonial => (
+                        <div key={testimonial.name} className="bg-white/80 dark:bg-slate-800/80 p-8 rounded-lg shadow-xl backdrop-blur-sm flex flex-col">
+                            <p className="text-slate-600 dark:text-slate-400 flex-grow">"{testimonial.quote}"</p>
+                            <p className="font-bold text-orange-500 mt-6">- {testimonial.name}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </AnimatedSection>
+
       </div>
     </div>
   );
