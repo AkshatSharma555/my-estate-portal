@@ -73,21 +73,22 @@ function AboutPage() {
           <div className="py-24">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-12 items-center max-w-7xl mx-auto">
               <div className="md:col-span-2 flex justify-center">
-                  <img src={ceoImage} alt="J. M. Mhatre, CEO of JMM Homes" className="rounded-lg shadow-2xl w-full max-w-sm object-cover" />
+                  <img src={ceoImage} alt="Vipul Mhatre, CEO of JMM Homes" className="rounded-lg shadow-2xl w-full max-w-sm object-cover" />
               </div>
               <div className="md:col-span-3">
                   <h2 className="text-sm font-bold uppercase text-orange-500 tracking-widest mb-2">A Message from the Visionary</h2>
-                  <h3 className="text-4xl font-bold mb-2 text-slate-800 dark:text-white">J. M. Mhatre</h3>
+                  {/* === NAME UPDATED AND HIGHLIGHTED HERE === */}
+                  <h3 className="text-4xl font-bold mb-2 text-slate-800 dark:text-white">
+                    <span className="text-orange-500">Vipul Mhatre</span>
+                  </h3>
                   <p className="font-semibold text-slate-600 dark:text-slate-400 mb-6">CEO & Founder, JMM Homes</p>
                   
-                  {/* === UPDATED INFO STARTS HERE === */}
                   <p className="text-slate-600 dark:text-slate-400 mb-4 text-lg">
-                    J. M. Mhatre, a passionate entrepreneur and the driving force behind JM Mhatre Infra Logistics. With a strong belief in building dreams from the ground up, he began his journey from scratch — turning challenges into opportunities through hard work, dedication, and an eye for quality.
+                    Vipul Mhatre, a passionate entrepreneur and the driving force behind JM Mhatre Infra Logistics. With a strong belief in building dreams from the ground up, he began his journey from scratch — turning challenges into opportunities through hard work, dedication, and an eye for quality.
                   </p>
                   <p className="text-slate-600 dark:text-slate-400 text-lg">
                     Under his leadership, JMM Homes has grown into a trusted name in construction and real estate, known for delivering excellence, reliability, and innovation. Every project reflects his commitment to creating spaces that combine modern design, durability, and comfort — where every home tells a story of trust and craftsmanship.
                   </p>
-                  {/* === UPDATED INFO ENDS HERE === */}
 
               </div>
             </div>
